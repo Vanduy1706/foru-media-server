@@ -27,6 +27,8 @@ const port = process.env.PORT || 8080
 // Connect to database
 main().catch((err) => console.log(err))
 
+app.set("trust proxy", 1)
+
 app.use(
   cors({
     origin: process.env.DOMAINCLIENT,
@@ -48,8 +50,8 @@ app.use(
     cookie: {
       maxAge: 30 * 60 * 1000,
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       path: "/",
     },
   })
