@@ -27,6 +27,12 @@ const port = process.env.PORT || 8080
 // Connect to database
 main().catch((err) => console.log(err))
 
+app.use(
+  cors({
+    origin: process.env.DOMAINCLIENT,
+    credentials: true,
+  })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
@@ -46,12 +52,6 @@ app.use(
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       path: "/",
     },
-  })
-)
-app.use(
-  cors({
-    origin: process.env.DOMAINCLIENT,
-    credentials: true,
   })
 )
 
