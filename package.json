@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch --env-file=.env index.js"
+  },
+  "keywords": [],
+  "author": "Vo Van Duy",
+  "license": "ISC",
+  "description": "Back-end for application",
+  "dependencies": {
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.4",
+    "nodemailer": "^7.0.5",
+    "redis": "^5.7.0",
+    "socket.io": "^4.8.1"
+  }
+}
