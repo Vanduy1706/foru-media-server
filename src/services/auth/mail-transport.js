@@ -11,16 +11,16 @@ export default async function createTransport() {
         pass: process.env.SMTP_PASSWORD,
       },
     })
+  } else {
+    // let testAccount = await nodemailer.createTestAccount()
+    return nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: "587",
+      secure: false,
+      auth: {
+        user: process.env.ETHEREAL_USERNAME,
+        pass: process.env.ETHEREAL_PASSWORD,
+      },
+    })
   }
-
-  // let testAccount = await nodemailer.createTestAccount()
-  return nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: "587",
-    secure: false,
-    auth: {
-      user: process.env.ETHEREAL_USERNAME,
-      pass: process.env.ETHEREAL_PASSWORD,
-    },
-  })
 }
