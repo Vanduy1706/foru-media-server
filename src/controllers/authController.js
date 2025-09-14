@@ -1,5 +1,5 @@
 import createUser from "../services/user/create-user.js"
-import createTransport from "../services/auth/mail-transport.js"
+// import createTransport from "../services/auth/mail-transport.js"
 import sendMail from "../services/auth/send-mail.js"
 import generateOTPCode from "../utils/otp.util.js"
 import generateToken from "../services/token/generate-token.js"
@@ -20,7 +20,7 @@ async function loginWithEmail(req, res, next) {
   try {
     let emailFromBody = req.body.email
     let code = await generateOTPCode()
-    let transporter = await createTransport()
+    // let transporter = await createTransport()
 
     if (isEmailInvalid(emailFromBody)) {
       const error = new Error("Invalid Email")
@@ -34,16 +34,16 @@ async function loginWithEmail(req, res, next) {
       throw error
     }
 
-    if (!transporter) {
-      const error = new Error("Can't open the Email host")
-      error.status = 500
-      throw error
-    }
+    // if (!transporter) {
+    //   const error = new Error("Can't open the Email host")
+    //   error.status = 500
+    //   throw error
+    // }
 
     await sendMail({
       emailFromBody,
       code,
-      transporter,
+      // transporter,
     })
 
     req.session.verifyData = { email: emailFromBody, code: code, enterCount: 3 }
